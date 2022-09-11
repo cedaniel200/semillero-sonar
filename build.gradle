@@ -1,0 +1,46 @@
+plugins {
+    id 'java'
+    id "jacoco"
+    id "org.sonarqube" version "3.4.0.2513"
+}
+
+group 'com.cedaniel200'
+version '1.0-SNAPSHOT'
+
+jacoco {
+    toolVersion = "0.8.8"
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+    }
+    afterEvaluate {
+        classDirectories.from = files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: [
+                    'com/cedaniel200/semillero/model/**'
+            ])
+        })
+    }
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "semillero-sonar-2022-2"
+        property "sonar.organization", "capacitacion-github"
+        property "sonar.host.url", "https://sonarcloud.io"
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
+}
+
+test {
+    useJUnitPlatform()
+}
