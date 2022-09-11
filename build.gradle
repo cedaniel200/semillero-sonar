@@ -26,6 +26,8 @@ jacocoTestReport {
 
 sonarqube {
     properties {
+        property "sonar.branch.name", gitBranch()
+        property "sonar.branch.targe", gitBranch()
         property "sonar.projectKey", "semillero-sonar-2022-2"
         property "sonar.organization", "capacitacion-github"
         property "sonar.host.url", "https://sonarcloud.io"
@@ -51,7 +53,5 @@ def gitBranch() {
     proc.in.eachLine { line -> branch = line }
     proc.err.eachLine { line -> println line }
     proc.waitFor()
-    if(branch.equalsIgnoreCase("HEAD"))
-        branch = "main"
     branch
 }
