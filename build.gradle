@@ -53,5 +53,7 @@ def gitBranch() {
     proc.in.eachLine { line -> branch = line }
     proc.err.eachLine { line -> println line }
     proc.waitFor()
+    if(branch.equalsIgnoreCase("HEAD"))
+        branch = "main"
     branch
 }
