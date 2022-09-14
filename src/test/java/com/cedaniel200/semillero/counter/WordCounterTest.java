@@ -21,4 +21,9 @@ class WordCounterTest {
         Assertions.assertEquals(2, summary.getNumberOfLines());
         Assertions.assertEquals(5, summary.getNumberOfWord());
     }
+
+    @Test
+    void mustReturnCorrectSummary2() throws IOException {
+        Assertions.fail();
+    }
 }
