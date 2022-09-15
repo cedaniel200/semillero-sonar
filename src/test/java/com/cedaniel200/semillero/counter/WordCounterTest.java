@@ -25,7 +25,7 @@ class WordCounterTest {
     }
 
     @Test
-    void mustThromsIOExceptionWhenFileNotFound() throws IOException {
+    void mustThrowsIOExceptionWhenFileNotFound() throws IOException {
         IOException thrown = assertThrows(
                 IOException.class,
                 () -> {
