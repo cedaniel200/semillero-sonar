@@ -20,7 +20,7 @@ pipeline {
             steps {
                 withSonarQubeEnv(installationName: 'SonarCloud') {
                     script {
-                        bat "gradlew sonarqube -Dsonar.branch.targe=${BRANCH_NAME} -Dsonar.branch.name=${BRANCH_NAME}"
+                        bat "gradlew sonarqube -Dsonar.branch.name=${BRANCH_NAME}"
                     }
                 }
             }
