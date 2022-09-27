@@ -1,6 +1,5 @@
 pipeline {
     agent {label "windows"}
-    def branchName = getCurrentBranch()
     stages {
         stage('build') {
             steps {
@@ -20,6 +19,7 @@ pipeline {
         stage('Analisis de SonarQube') {
             steps {
                 withSonarQubeEnv(installationName: 'SonarCloud' ,credentialsId: 'token-sonarcloud') {
+                    def branchName = getCurrentBranch()
                     bat "gradlew sonarqube -Dsonar.branch.targe=${branchName} -Dsonar.branch.name=${branchName}"
                 }
             }
