@@ -1,6 +1,11 @@
 pipeline {
     agent {label "windows"}
     stages {
+        stage('pre-build') {
+            steps {
+                bat 'git fetch origin main'
+            }
+        }
         stage('build') {
             steps {
                 bat 'gradlew clean build -x test'
