@@ -14,6 +14,7 @@ jacoco {
 jacocoTestReport {
     reports {
         xml.required = true
+        xml.enabled true
     }
     afterEvaluate {
         classDirectories.from = files(classDirectories.files.collect {
