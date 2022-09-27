@@ -18,9 +18,9 @@ pipeline {
         }
         stage('Analisis de SonarQube') {
             steps {
-                withSonarQubeEnv(installationName: 'SonarCloud', credentialsId: 'token-sonarcloud') {
+                withSonarQubeEnv(installationName: 'SonarCloud') {
                     script {
-                        bat 'gradlew sonarqube -Dsonar.branch.targe=feature/counter -Dsonar.branch.name=feature/counter'
+                        bat "gradlew sonarqube -Dsonar.branch.name=${BRANCH_NAME}"
                     }
                 }
             }
