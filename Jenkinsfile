@@ -1,13 +1,6 @@
 pipeline {
     agent {label "windows"}
     stages {
-        stage('pre-build') {
-            steps {
-                bat 'git checkout -b main'
-                bat 'git pull origin main'
-                bat 'git checkout ${BRANCH_NAME}'
-            }
-        }
         stage('build') {
             steps {
                 bat 'gradlew clean build -x test'
