@@ -3,7 +3,6 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo "TAG_NAME = ${TAG_NAME}"
                 bat 'gradlew clean build -x test'
             }
         }
