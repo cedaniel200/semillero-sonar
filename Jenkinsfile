@@ -3,7 +3,9 @@ pipeline {
     stages {
         stage('pre-build') {
             steps {
-                bat 'git fetch origin main'
+                bat 'git checkout -b main'
+                bat 'git pull -u origin main'
+                bat 'git checkout ${BRANCH_NAME}'
             }
         }
         stage('build') {
