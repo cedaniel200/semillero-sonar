@@ -4,7 +4,7 @@ pipeline {
         stage('pre-build') {
             steps {
                 bat 'git checkout -b main'
-                bat 'git pull -u origin main'
+                bat 'git pull origin main'
                 bat 'git checkout ${BRANCH_NAME}'
             }
         }
