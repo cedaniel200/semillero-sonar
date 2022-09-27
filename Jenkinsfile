@@ -20,15 +20,11 @@ pipeline {
             steps {
                 withSonarQubeEnv(installationName: 'SonarCloud' ,credentialsId: 'token-sonarcloud') {
                     script {
-                        def branchName = getCurrentBranch()
+                        def branchName = bat (script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim()
                         bat "gradlew sonarqube -Dsonar.branch.targe=${branchName} -Dsonar.branch.name=${branchName}"
                     }
                 }
             }
         }
     }
-}
-
-def getCurrentBranch () {
-    return bat (script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim()
 }
