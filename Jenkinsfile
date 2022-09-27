@@ -20,7 +20,7 @@ pipeline {
             steps {
                 withSonarQubeEnv(installationName: 'SonarCloud', credentialsId: 'token-sonarcloud') {
                     script {
-                        bat 'gradlew sonarqube -Dsonar.branch.targe=feature/counter -Dsonar.branch.name=feature/counter'
+                        bat 'gradlew sonarqube'
                     }
                 }
             }
