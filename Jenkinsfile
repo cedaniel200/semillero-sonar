@@ -18,9 +18,11 @@ pipeline {
         }
         stage('Analisis de SonarQube') {
             steps {
-                def branchName = getCurrentBranch()
                 withSonarQubeEnv(installationName: 'SonarCloud' ,credentialsId: 'token-sonarcloud') {
-                    bat "gradlew sonarqube -Dsonar.branch.targe=${branchName} -Dsonar.branch.name=${branchName}"
+                    script {
+                        def branchName = getCurrentBranch()
+                        bat "gradlew sonarqube -Dsonar.branch.targe=${branchName} -Dsonar.branch.name=${branchName}"
+                    }
                 }
             }
         }
