@@ -1,4 +1,4 @@
-package com.cedaniel200.semillero.counter;
+package com.cedaniel200.semillero.domain.counter;
 
 import com.cedaniel200.semillero.model.Summary;
 
