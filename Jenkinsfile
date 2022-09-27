@@ -1,22 +1,23 @@
 pipeline {
     agent {label "windows"}
     stages {
-        stage('build') {
+        stage('Build') {
             steps {
+                echo "TAG_NAME = ${TAG_NAME}"
                 bat 'gradlew clean build -x test'
             }
         }
-        stage('test') {
+        stage('Test') {
             steps {
                 bat "gradlew test"
             }
         }
-        stage('coverage') {
+        stage('Coverage') {
             steps {
                 bat 'gradlew jacocoTestReport'
             }
         }
-        stage('Analisis de SonarQube') {
+        stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv(installationName: 'SonarCloud') {
                     script {
@@ -30,6 +31,18 @@ pipeline {
                 timeout(time: 1, unit: 'HOURS') {
                     waitForQualityGate abortPipeline: true
                 }
+            }
+        }
+        stage("Generate and Publish Artifact") {
+            when {
+                allOf {
+                    branch "main"
+                    tag "v*.*.*"
+                }
+            }
+            steps {
+                echo "Generate Artifact ..."
+                echo "Publish Artifact ..."
             }
         }
     }
