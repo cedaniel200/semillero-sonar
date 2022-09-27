@@ -22,7 +22,7 @@ pipeline {
         stage('Analisis de SonarQube') {
             steps {
                 withSonarQubeEnv(installationName: 'SonarCloud' ,credentialsId: 'token-sonarcloud') {
-                    bat 'gradlew sonarqube -Dsonar.branch.targe=${params.BRANCH} -Dsonar.branch.name=${params.BRANCH}'
+                    bat "gradlew sonarqube -Dsonar.branch.targe=${params.BRANCH} -Dsonar.branch.name=${params.BRANCH}"
                 }
             }
         }
