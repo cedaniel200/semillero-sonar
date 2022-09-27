@@ -20,8 +20,8 @@ pipeline {
             }
         }
         stage('SonarQube analysis') {
-            withSonarQubeEnv() {
-              bat 'gradlew sonarqube -Dsonar.branch.targe=${params.BRANCH} -Dsonar.branch.name=${params.BRANCH}'
+            withSonarQubeEnv(credentialsId: 'token-sonarcloud') {
+                bat 'gradlew sonarqube -Dsonar.branch.targe=${params.BRANCH} -Dsonar.branch.name=${params.BRANCH}'
             }
         }
     }
