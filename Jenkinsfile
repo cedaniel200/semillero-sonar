@@ -1,8 +1,5 @@
 pipeline {
     agent {label "windows"}
-    parameters {
-        string(name: 'BRANCH', defaultValue: 'main', description: 'Branch')
-    }
     stages {
         stage('build') {
             steps {
@@ -22,7 +19,7 @@ pipeline {
         stage('Analisis de SonarQube') {
             steps {
                 withSonarQubeEnv(installationName: 'SonarCloud' ,credentialsId: 'token-sonarcloud') {
-                    bat "gradlew sonarqube -Dsonar.branch.targe=${params.BRANCH} -Dsonar.branch.name=${params.BRANCH}"
+                    bat "gradlew sonarqube -Dsonar.branch.targe=${env.BRANCH_NAME} -Dsonar.branch.name=${env.BRANCH_NAME}"
                 }
             }
         }
